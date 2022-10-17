@@ -5,11 +5,10 @@
 
 body {
     background: #000;
-    font-family: 'Amiri', serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
     height: 4000px;
 }
-
 canvas {
     position: fixed;
     top: 0;
@@ -38,4 +37,7 @@ canvas {
 #box4{
     transform: translateX(-550px);
     background: #000;
+}
+#car{
+    /* transform: translateX(-200px) */
 }

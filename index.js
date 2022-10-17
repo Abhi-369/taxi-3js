@@ -44,92 +44,29 @@ function animateParticles(event) {
 }
 
 gsap.registerPlugin(ScrollTrigger)
+const tl = gsap.timeline()
 
-gsap.to('#box', {
-    x: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: '#box',
-        scrub: true,
-    }
-})
+tl
+    .to('#box', { x: 0, duration: 1, scrollTrigger: { trigger: '#box', scrub: true } })
+    .to('#box1', { x: 0, duration: 1, scrollTrigger: { trigger: '#box', scrub: true } })
+    .to('#box2', { x: 0, duration: 1, scrollTrigger: { trigger: '#box', scrub: true } })
+    .to('#box3', { x: 0, duration: 1, scrollTrigger: { trigger: '#box', scrub: true } })
+    .to('#box4', { x: 0, duration: 1, scrollTrigger: { trigger: '#box', scrub: true } })
 
-gsap.to('#box1', {
-    x: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: '#box',
-        scrub: true,
-    }
-})
-
-gsap.to('#box2', {
-    x: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: '#box',
-        scrub: true,
-    }
-})
-
-gsap.to('#box3', {
-    x: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: '#box',
-        scrub: true,
-    }
-})
-
-gsap.to('#box4', {
-    x: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: '#box',
-        scrub: true
-    }
-})
-
-gsap.to('#text1', {
-    visibility: 'visible',
-    scrollTrigger: {
-        trigger: '#text1',
-        start: 1600,
-        scrub: true
-    }
-})
-gsap.to('#text2', {
-    visibility: 'visible',
-    scrollTrigger: {
-        trigger: '#text2',
-        start: 1800,
-        scrub: true
-    }
-})
-gsap.to('#text3', {
-    visibility: 'visible',
-    scrollTrigger: {
-        trigger: '#text3',
-        start: 2000,
-        scrub: true
-    }
-})
-gsap.to('#text4', {
-    visibility: 'visible',
-    scrollTrigger: {
-        trigger: '#text4',
-        start: 2200,
-        scrub: true
-    }
-})
+tl
+    .to('#text1', { visibility: 'visible', scrollTrigger: { trigger: '#text1', start: 1600, scrub: true } })
+    .to('#text2', { visibility: 'visible', scrollTrigger: { trigger: '#text2', start: 1800, scrub: true } })
+    .to('#text3', { visibility: 'visible', scrollTrigger: { trigger: '#text3', start: 2000, scrub: true } })
+    .to('#text4', { visibility: 'visible', scrollTrigger: { trigger: '#text4', start: 2200, scrub: true } })
 
 gsap.to('#car', {
-    x: 1500,
-    duration: 1,
+    x: innerWidth,
+    duration: 2,
     scrollTrigger: {
         trigger: '#car',
+        start: 'top top',
         scrub: true,
-        ease: 'Power1.easeInOut',
+        pin: true
     }
 })
 
@@ -149,7 +86,7 @@ console.log("misu", mouse)
 window.addEventListener('scroll', (e) => {
     const clientY = window.pageYOffset
     console.log("clientY", clientY)
-    if (clientY > 100) {
+    if (clientY > 80) {
         para[0].style.opacity = 0.5
         para[1].style.opacity = 0.5
         word.style.letterSpacing = 20 + 'px'
@@ -174,8 +111,19 @@ window.addEventListener('scroll', (e) => {
     // }
 })
 
-const clock = new THREE.Clock()
 
+window.addEventListener('resize', onWindowResize);
+
+function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+}
+
+const clock = new THREE.Clock()
 
 function animate() {
     requestAnimationFrame(animate);
@@ -191,3 +139,4 @@ function animate() {
 }
 
 animate();
+
